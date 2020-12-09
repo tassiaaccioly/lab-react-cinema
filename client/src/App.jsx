@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-import Home from './components/Home';
+import React, { Component } from "react";
+import Home from "./components/Home";
+
+import MovieList from "./components/MovieList";
 
 class App extends Component {
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Home />
+        <MovieList />
       </div>
     );
   }
