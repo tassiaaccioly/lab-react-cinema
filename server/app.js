@@ -20,6 +20,7 @@ mongoose
   })
   .then((self) => {
     console.log(`Connected to Mongo! Database name: "${self.connection.name}"`);
+    return self.connection.dropDatabase();
   })
   .then(() => {
     Movie.insertMany(movies)
@@ -44,6 +45,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/", require("./routes/index"));
+app.use("/api", require("./routes/index"));
 
 module.exports = app;

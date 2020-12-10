@@ -19,4 +19,32 @@ router.get("/movies", async (req, res) => {
   }
 });
 
+router.get("/movies/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const movie = await Movie.findOne({ _id: id });
+
+    if (movie) {
+      return res.status(200).json(movie);
+    }
+
+    return res.status(404).json({ msg: "Movie Not Found" });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: err });
+  }
+});
+
+router.post("/movies", async (req, res) => {
+  try {
+    const result = await Movie.create(req.body);
+
+    return res.status(201).json(result);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: err });
+  }
+});
+
 module.exports = router;
